@@ -1,0 +1,33 @@
+{
+  "name": "contributte",
+  "version": "1.0.0",
+  "description": "Contributte Website & Docs",
+  "author": "Milan Felix Šulc <rkfelix@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.9",
+    "highlight.js": "^9.12.0",
+    "lodash": "^4.17.10",
+    "nuxt": "^1.4.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/markdownit": "^1.2.1",
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.5.0",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-github-headings": "^1.1.1",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1"
+  }
+}
