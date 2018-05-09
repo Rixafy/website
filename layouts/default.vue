@@ -12,8 +12,8 @@
             <nuxt-link tag="li" class="nav-item" :to="{path: '/packages'}" activeClass="active">
               <a class="nav-link">All packages</a>
             </nuxt-link>
-            <nuxt-link tag="li" class="nav-item" :to="{path: '/about'}" activeClass="active">
-              <a class="nav-link">About</a>
+            <nuxt-link tag="li" class="nav-item" :to="{path: '/team'}" activeClass="active">
+              <a class="nav-link">About us</a>
             </nuxt-link>
           </ul>
         </div>
@@ -75,23 +75,23 @@
   }
 
   h1 {
-    font-size: 250%;
+    font-size: 150%;
   }
 
   h2 {
-    font-size: 220%;
-  }
-
-  h3 {
-    font-size: 180%;
-  }
-
-  h4 {
     font-size: 140%;
   }
 
-  h5 {
+  h3 {
+    font-size: 130%;
+  }
+
+  h4 {
     font-size: 120%;
+  }
+
+  h5 {
+    font-size: 110%;
   }
 
   h6 {
@@ -133,12 +133,11 @@
     background-color: #f9f9f9;
     display: flex;
     align-items: stretch;
-    padding: 20px 0 0 0;
 
     #sidebar {
       min-width: 200px;
       max-width: 200px;
-      margin: 0 0 0 20px;
+      margin: 20px 0 0 20px;
 
       h3 {
         font-size: 18px;
@@ -146,8 +145,9 @@
     }
 
     #content {
+      padding: 20px;
       width: 100%;
-      font-size: 18px;
+      background-color: #fff;
     }
   }
 

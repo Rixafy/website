@@ -1,7 +1,6 @@
 const {repositories} = require('../data/repositories');
 const _ = require('lodash');
 
-
 function addRepositoryName() {
   const data = {};
 

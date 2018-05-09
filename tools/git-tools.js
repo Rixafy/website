@@ -1,14 +1,19 @@
 const path = require('path');
 const {spawn} = require('child_process');
 const _ = require('lodash');
+const fs = require("fs");
 
 const {repositories} = require(__dirname + '/../data/repositories');
 const vcsRoot = path.resolve(__dirname + '/../data/vcs');
 const processes = [];
 
-function cloneAllRepos() {
+function sync() {
   _.forEach(repositories, repo => {
-    cloneRepo(repo);
+    if (fs.existsSync(`${vcsRoot}/${repo.name}`)) {
+      pullRepo(repo.name);
+    } else {
+      cloneRepo(repo.name);
+    }
   })
 }
 
@@ -26,15 +31,15 @@ function cloneRepo(repo) {
 
   p.on('close', (code) => {
     if (code === 0) {
-      console.log(`[${repo}]: DONE`);
+      console.log(`Clonning [${repo}]: DONE`);
     } else {
-      console.log(`[${repo}]: FAILED`);
+      console.log(`Clonning [${repo}]: FAILED`);
     }
   });
 }
 
-function syncRepo(repo) {
-  const p = spawn('git', ['fetch'], {cwd: vcsRoot + "/" + repo});
+function pullRepo(repo) {
+  const p = spawn('git', ['pull'], {cwd: vcsRoot + "/" + repo});
   processes.push(p);
 
   p.stdout.on('data', (data) => {
@@ -47,13 +52,13 @@ function syncRepo(repo) {
 
   p.on('close', (code) => {
     if (code === 0) {
-      console.log(`[${repo}]: DONE`);
+      console.log(`Pulling [${repo}]: DONE`);
     } else {
-      console.log(`[${repo}]: FAILED`);
+      console.log(`Pulling [${repo}]: FAILED`);
     }
   });
 }
 
 // ===========================
 
-cloneAllRepos();
+sync();

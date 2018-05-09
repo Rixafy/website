@@ -66,11 +66,16 @@
     }
   }
 
-  pre code {
-    display: block;
-    overflow-x: auto;
-    padding: 0.5em;
-    background: #cdcdcd;
-    color: #000;
+  pre {
+    code {
+      display: block;
+      overflow-x: auto;
+      background: #cdcdcd;
+      color: #000;
+      border-radius: 5px;
+    }
+    code, code.hljs {
+      padding: 1em;
+    }
   }
 </style>

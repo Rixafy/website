@@ -1,35 +1,37 @@
 <template>
   <nav>
     <div class="sidebar-group">
-      <h3>Getting started</h3>
+      <h3>Get started</h3>
       <ul class="list-unstyled components">
         <li class="active">
-          <nuxt-link to="/about">About</nuxt-link>
+          <nuxt-link to="/guide">How to start</nuxt-link>
         </li>
       </ul>
     </div>
-    <div class="sidebar-group">
-      <h3>Packages</h3>
-      <ul class="list-unstyled components">
-        <li
-          v-for="(repository) of repositories"
-          :key="repository.name"
-        >
-          <nuxt-link :to="{name: 'packages-'+repository.name}" activeClass="active">{{ repository.name }}</nuxt-link>
-        </li>
-      </ul>
-    </div>
+    <sidebar-group group="Nette" :repositories="getRepositories('nette-contrib')"/>
+    <sidebar-group group="Symfony" :repositories="getRepositories('symfony')"/>
+    <sidebar-group group="Other" :repositories="getRepositories(null)"/>
   </nav>
 </template>
 
 <script>
   import {getEnabledRepositories} from "../model/repositories";
+  import SidebarGroup from "./SidebarGroup";
 
   export default {
+    components: {SidebarGroup},
     data() {
       return {
         repositories: getEnabledRepositories()
       };
+    },
+    methods: {
+      getRepositories(category) {
+        return getEnabledRepositories().filter(r => {
+          if (category === null) return r['category'] === undefined;
+          return r.category === category;
+        });
+      }
     }
   }
 </script>
