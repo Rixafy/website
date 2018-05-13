@@ -1,15 +1,14 @@
 <script>
-  import readme from "!raw-loader!<%= $readme %>";
   import PackageBase from "@/components/PackageBase";
   import {getRepository} from "@/model/repositories";
 
   export default {
     extends: PackageBase,
-    asyncData() {
+    asyncData(context) {
       return {
         repository: getRepository("<%= $repository.name %>"),
-        readme
+        readme: context.app.$md.render(require('!raw-loader!<%= $readme %>'))
       }
-    },
+    }
   }
 </script>

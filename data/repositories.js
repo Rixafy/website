@@ -135,6 +135,7 @@ const repositories = {
   },
   "event-dispatcher-extra": {
     "name": "event-dispatcher-extra",
+    "category": "symfony",
     "enabled": true,
     "priority": 0,
     "docs": "v1",

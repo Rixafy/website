@@ -25,7 +25,11 @@
         <div id="sidebar">
           <sidebar/>
         </div>
-        <div id="content" class="flex-grow-1">
+        <div
+          id="content"
+          class="flex-grow-1"
+          :class="{'content--p0': /packages\/.+/.test($route.path)}"
+        >
           <nuxt/>
         </div>
       </div>
@@ -51,107 +55,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  html {
-    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    word-spacing: 1px;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-  }
-
-  *, *:before, *:after {
-    box-sizing: border-box;
-    margin: 0;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    color: #3765af;
-    font-weight: 400;
-  }
-
-  h1 {
-    font-size: 150%;
-  }
-
-  h2 {
-    font-size: 140%;
-  }
-
-  h3 {
-    font-size: 130%;
-  }
-
-  h4 {
-    font-size: 120%;
-  }
-
-  h5 {
-    font-size: 110%;
-  }
-
-  h6 {
-    font-size: 100%;
-  }
-
-  p {
-    line-height: 1.7;
-    max-width: 50rem;
-    padding: .8em 0 0;
-
-  }
-
-  .navbar {
-    &.c-navbar-blue {
-      background-color: #3765af;
-    }
-
-    a {
-      color: #fff;
-    }
-
-    .navbar-nav {
-      li {
-        a {
-          color: #cdcdcd;
-        }
-      }
-      li.active {
-        a {
-          color: #fff;
-        }
-      }
-    }
-
-  }
-
-  main {
-    background-color: #f9f9f9;
-    display: flex;
-    align-items: stretch;
-
-    #sidebar {
-      min-width: 200px;
-      max-width: 200px;
-      margin: 20px 0 0 20px;
-
-      h3 {
-        font-size: 18px;
-      }
-    }
-
-    #content {
-      padding: 20px;
-      width: 100%;
-      background-color: #fff;
-    }
-  }
-
-  footer {
-    margin: 30px 0;
-  }
-</style>

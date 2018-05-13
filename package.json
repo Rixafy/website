@@ -14,9 +14,12 @@
   },
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.9",
+    "clipboard": "^2.0.1",
     "highlight.js": "^9.12.0",
     "lodash": "^4.17.10",
-    "nuxt": "^1.4.0"
+    "nuxt": "^1.4.0",
+    "octicons": "^4.0.0",
+    "twemoji": "^2.5.1"
   },
   "devDependencies": {
     "@nuxtjs/markdownit": "^1.2.1",

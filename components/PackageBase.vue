@@ -1,21 +1,49 @@
 <template>
   <div class="package">
-    <div v-html="$md.render(readme)"></div>
+    <div class="toolbar d-flex">
+      <div class="flex-fill">
+        <div class="composer d-inline-block">
+          <span class="composer-clipboard octicon octicon-desktop-download"
+                title="Click &amp; copy"
+                :data-composer="'composer require contributte/'+repository.name"
+          />
+          composer require contributte/{{repository.name}}
+        </div>
+      </div>
+      <div class="flex-fill text-right">
+        <a class="btn btn-sm btn-info" :href="'https://github.com/contributte/'+repository.name">
+          <span class="octicon octicon-mark-github"></span> Docs
+        </a>
+        <a class="btn btn-sm btn-dark" :href="'https://github.com/contributte/'+repository.name">
+          <span class="octicon octicon-mark-github"></span> Github
+        </a>
+        <a class="btn btn-sm btn-warning" :href="'https://packagist.org/packages/contributte/'+repository.name">
+          <span class="octicon octicon-desktop-download"></span> Packagist
+        </a>
+      </div>
+    </div>
+    <div class="readme">
+      <div v-html="readme"></div>
+    </div>
   </div>
 </template>
 
 <script>
   import highlightjs from 'highlight.js';
+  import ClipboardJS from 'clipboard';
 
   export default {
     data: () => ({
-      repository: null,
+      repository: {},
       readme: null,
     }),
     mounted() {
+      if (!this.$el.querySelectorAll) return;
+
       this.$el.querySelectorAll('pre code').forEach(b => {
         highlightjs.highlightBlock(b);
       });
+
       this.$el.querySelectorAll('a').forEach(ahref => {
         ahref.onclick = (e) => {
           if (!e.target.hash) return;
@@ -27,12 +55,45 @@
           }
         };
       });
-    }
+
+      const clipboard = new ClipboardJS(this.$el.querySelector('span.composer-clipboard'), {
+        text: function (trigger) {
+          return trigger.getAttribute('data-composer');
+        }
+      });
+      clipboard.on('success', function (e) {
+        e.trigger.setAttribute('title', 'Copied!');
+      });
+    },
   }
 </script>
 
 <style lang="scss">
   @import "highlight.js/styles/agate.css";
+
+  .toolbar {
+    background: #cdcdcd;
+    padding: 10px;
+
+    .composer {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 5px 10px;
+    }
+
+    .btn {
+      margin-left: 2px;
+    }
+
+    .composer-clipboard {
+      cursor: pointer;
+    }
+  }
+
+  .readme {
+    padding: 20px;
+  }
 
   table {
     padding: 0;
