@@ -10,16 +10,19 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Contributte packages aref irst class extensions for Nette Framework.'
+        content: 'Contributte packages are first class extensions for Nette Framework.'
+      },      {
+        hid: 'keywords',
+        name: 'keywords',
+        content: 'contributte, nette, symfony, extensions, mvc, application, http, security, utils, database'
       },
     ],
     link: [
-      {rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32'},
-      {rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16'},
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
   css: [
+    'highlight.js/styles/agate.css',
     '~/assets/app.scss'
   ],
   /*
@@ -42,6 +45,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
     /*
     ** Run ESLint on save
     */
@@ -55,5 +59,8 @@ module.exports = {
         })
       }
     }
+  },
+  render: {
+    resourceHints: false,
   }
 };

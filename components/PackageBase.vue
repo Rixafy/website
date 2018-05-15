@@ -33,10 +33,19 @@
   import ClipboardJS from 'clipboard';
 
   export default {
-    data: () => ({
-      repository: {},
-      readme: null,
-    }),
+    head() {
+      return {
+        title: `Package: contributte / ${this.repository.name}`,
+        meta: [
+          {hid: 'description', name: 'description', content: this.repository.description}
+        ]
+      }
+    },
+    computed: {
+      readme() {
+        return this.$_readme;
+      }
+    },
     mounted() {
       if (!this.$el.querySelectorAll) return;
 
@@ -69,8 +78,6 @@
 </script>
 
 <style lang="scss">
-  @import "highlight.js/styles/agate.css";
-
   .toolbar {
     background: #cdcdcd;
     padding: 10px;
