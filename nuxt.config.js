@@ -11,7 +11,8 @@ module.exports = {
         hid: 'description',
         name: 'description',
         content: 'Contributte packages are first class extensions for Nette Framework.'
-      },      {
+      },
+      {
         hid: 'keywords',
         name: 'keywords',
         content: 'contributte, nette, symfony, extensions, mvc, application, http, security, utils, database'
@@ -39,13 +40,12 @@ module.exports = {
    * Enabled plugins
    */
   plugins: [
-    {src: '~/plugins/markdownit.js'}
+    {src: '~/plugins/highlight.js', ssr: false},
   ],
   /*
   ** Build configuration
   */
   build: {
-    extractCSS: true,
     /*
     ** Run ESLint on save
     */
@@ -58,6 +58,28 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: 'markdown-it-loader',
+        exclude: /(node_modules)/,
+        options: {
+          preset: "default",
+          html: true,
+          linkify: true,
+          typographer: true,
+          breaks: false,
+          use: [
+            require('markdown-it-emoji'),
+            require('twemoji'),
+            [require('markdown-it-github-headings'), {"enableHeadingLinkIcons": false}]
+          ]
+        }
+      });
+
+      // md.renderer.rules.emoji = function (token, idx) {
+      //   return twemoji.parse(token[idx].content);
+      // }
     }
   },
   render: {

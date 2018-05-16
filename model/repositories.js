@@ -1,8 +1,8 @@
 import {repositories} from './../data/repositories';
-import _ from 'lodash';
+import {filter} from 'lodash';
 
 export function getEnabledRepositories() {
-  return _.filter(repositories, r => r.enabled);
+  return filter(repositories, r => r.enabled);
 }
 
 export function getRepository(repository) {
